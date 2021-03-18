@@ -10,8 +10,15 @@
   </head>
   <body>
     <main class="calculator">
-      <div class="display" contenteditable="true"></div>
+      <div class="displayBar">
+        <div class="history"></div>
+        <div class="display" contenteditable="true"></div>
+      </div>
 
+      <button id="memory" class="memory">Mem</button>
+      <button id="memoryClear" class="memory">MC</button>
+      <button id="clear" class="clear">C</button>
+      <button id="clearAll" class="clear">CE</button>
       <button id="seven" class="number">7</button>
       <button id="eight" class="number">8</button>
       <button id="nine" class="number">9</button>
@@ -23,7 +30,7 @@
       <button id="one" class="number">1</button>
       <button id="two" class="number">2</button>
       <button id="three" class="number">3</button>
-      <button id="subtract" class="maths">—</button>
+      <button id="subtract" class="maths">-</button>
       <button id="decimal" class="number">.</button>
       <button id="zero" class="number">0</button>
       <button id="equal" class="equal">=</button>
