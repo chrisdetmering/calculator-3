@@ -11,9 +11,9 @@ A modern math machine. Add, Subtract, multiply and divide. Crunch numbers like n
 ##Features
 
 <ul>
-  <li>Simple Math Functions </li>
-  <li>responsive</li>
-  <li>copy to clipboard</li>
+  <li>Simple Math Functions</li>
+  <li>Responsive</li>
+  <li>Single number Memory</li>
   <li>Simple UI</li>
 </ul>
 
