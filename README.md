@@ -5,6 +5,7 @@ Javascript calculator for when counting is inconvenient.
 view <a href="https://duanemcd.github.io/calculator/"> Lazy Math Calculator</a>!
 
 ## Summary
+![What is this](screenshot.png)
 
 A modern math machine. Add, Subtract, multiply and divide. Crunch numbers like never before.
 
