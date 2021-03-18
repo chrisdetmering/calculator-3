@@ -8,7 +8,7 @@ view <a href="https://duanemcd.github.io/calculator/"> Lazy Math Calculator</a>!
 
 A modern math machine. Add, Subtract, multiply and divide. Crunch numbers like never before.
 
-<img src="
+![image](https://user-images.githubusercontent.com/77417381/111654018-bf7c0e80-87de-11eb-8bf4-6f250212a26f.png)
 
 ## Features
 
