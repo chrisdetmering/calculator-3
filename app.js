@@ -13,82 +13,113 @@ let history = [];
 let result = [];
 let mem = [];
 
-numberButtons.forEach(button => button.addEventListener("click", function(e){displayNumbers(e)
-}));
+numberButtons.forEach(button => button.addEventListener("click", function(e){displayNumbers(e)}));
+mathButtons.forEach(button => button.addEventListener("click", function(e){mathFunctions(e)}));
 
-mathButtons.forEach(button => button.addEventListener("click", function(e){getFirstNumber(e)}));
-
-returnButton.addEventListener("click", getResult)
-
-clearButton.addEventListener("click", clearDisplay)
-clearAllButton.addEventListener("click", clearAll)
-memoryButton.addEventListener("click", memorySwitch)
-memoryClearButton.addEventListener("click", clearMemory)
+returnButton.addEventListener("click", returnResult);
+clearButton.addEventListener("click", clearDisplay);
+clearAllButton.addEventListener("click", clearAll);
+memoryButton.addEventListener("click", memorySwitch);
+memoryClearButton.addEventListener("click", clearMemory);
 
 function displayNumbers(e) {
     if (result.length == 0) {
         return display.textContent += e.target.textContent;
     }else{
-        values = [result]
         result = [];
         return display.textContent = e.target.textContent;
     }
 }
 
-function getFirstNumber(e) {
+function mathFunctions(e) {
+    if(values.length == 0) {
+        storeValue(e);
+    }else if (display.textContent == "") {
+        updateOperator(e);
+    }else if (result.length == 0 ) {
+        getResult(e) ;
+    }else{
+        storeResult(e);
+    }
+}
+
+function storeValue(e) {
+    console.log("storeValue")
     values = [display.textContent];
     mathFunc = e.target.id;
     operator = e.target.textContent
     displayHistory.textContent = display.textContent + operator;
     display.textContent = "";
-    
 }
 
-function getResult() {
-    values.push(display.textContent);
+function updateOperator(e) {
+    console.log("updateOperator")
+    mathFunc = e.target.id;
+    operator = e.target.textContent
+    displayHistory.textContent = values + operator;
+    display.textContent = "";
+}
+
+function getResult(e) {
+    console.log("getResult")
+    values[1] = display.textContent;
+    result = operationResult();
+    values = result;
+    mathFunc = e.target.id;
+    operator = e.target.textContent
+
+    displayHistory.textContent = result + operator;
+    display.textContent = result;
+} 
+
+function storeResult(e) {
+    console.log("storeResult")
+    mathFunc = e.target.id;
+    operator = e.target.textContent
+
+    displayHistory.textContent = result;
+    displayHistory.textContent += operator;
+    values = result
+    result = [];
+    display.textContent = "";
+}
+
+function operationResult() {
     if (values[0] == "") {values[0] = 0}
     if (values[1] == "") {values[1] = 0}
-    if (result.length == 0) {
-        displayHistory.textContent += display.textContent;
-        switch (mathFunc) {
-            case "multiply":
-                result = parseFloat(values[0]) * parseFloat(values[1]);
-            return updateDisplay(result);
-            case "divide":
-                result = parseFloat(values[0]) / parseFloat(values[1]);
-            return updateDisplay(result);
-            case "add":
-                result = parseFloat(values[0]) + parseFloat(values[1]);
-            return updateDisplay(result);
-            case "subtract":
-                result = parseFloat(values[0]) -parseFloat(values[1]);
-            return updateDisplay(result);
-        }
-    }else{
-        displayHistory.textContent = result+operator+values[1];
-        switch (mathFunc) {
-            case "multiply":
-                result = result * parseFloat(values[1]);
-            return updateDisplay(result);
-            case "divide":
-                result = result / parseFloat(values[1]);
-            return updateDisplay(result);
-            case "add":
-                result = result + parseFloat(values[1]);
-            return updateDisplay(result)
-            case "subtract":
-                result = result - parseFloat(values[1]);
-            return updateDisplay(result);
-        }
+    switch (mathFunc) {
+        case "multiply":
+            return [parseFloat(values[0]) * parseFloat(values[1])];
+            
+        case "divide":
+            return [parseFloat(values[0]) / parseFloat(values[1])];
+            
+        case "add":
+            return [parseFloat(values[0]) + parseFloat(values[1])];
+            
+        case "subtract":
+            return [parseFloat(values[0]) - parseFloat(values[1])];
     }
 }
+
+function returnResult(e) {
+    values.push(display.textContent);
+    result = operationResult();
+    mathFunc = e.target.id;
+    operator = e.target.textContent
+
+    displayHistory.textContent = result;
+    display.textContent = result;
+}
+   
 function updateDisplay(result) {
     display.textContent = result;
 }
+
 function clearDisplay() {
-    displayHistory.textContent = display.textContent;
    return display.textContent = "";
 }
+
 function clearAll() {
     result = [];
     values = [];
@@ -97,6 +128,7 @@ function clearAll() {
     display.textContent = "";
     displayHistory.textContent = "";
 }
+
 function memorySwitch() {
     if (mem.length == 0) {
         return setMemory();
@@ -104,8 +136,11 @@ function memorySwitch() {
         return displayMemory();
     }
 }
+
 function setMemory() {
-    return mem = [display.textContent]
+    mem = [display.textContent]
+    displayHistory.textContent = "";
+    return display.textContent = "";
 }
 function displayMemory() {
     return display.textContent = mem
