@@ -32,10 +32,10 @@ function displayNumbers(e) {
 }
 
 function mathFunctions(e) {
-    if(values.length == 0) {
-        storeValue(e);
-    }else if (display.textContent == "") {
+    if (display.textContent == "") {
         updateOperator(e);
+    }else if (values.length == 0) {
+        storeValue(e);
     }else if (result.length == 0 ) {
         getResult(e) ;
     }else{
@@ -44,7 +44,6 @@ function mathFunctions(e) {
 }
 
 function storeValue(e) {
-    console.log("storeValue")
     values = [display.textContent];
     mathFunc = e.target.id;
     operator = e.target.textContent
@@ -53,15 +52,14 @@ function storeValue(e) {
 }
 
 function updateOperator(e) {
-    console.log("updateOperator")
     mathFunc = e.target.id;
-    operator = e.target.textContent
-    displayHistory.textContent = values + operator;
+    operator = e.target.textContent;
+    values = result;
+    displayHistory.textContent = result + operator;
     display.textContent = "";
 }
 
 function getResult(e) {
-    console.log("getResult")
     values[1] = display.textContent;
     result = operationResult();
     values = result;
@@ -73,7 +71,6 @@ function getResult(e) {
 } 
 
 function storeResult(e) {
-    console.log("storeResult")
     mathFunc = e.target.id;
     operator = e.target.textContent
 
