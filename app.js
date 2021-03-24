@@ -17,7 +17,7 @@ document.querySelector('.equal')
 document.querySelector('#clearAll')
 .addEventListener("click", clearAll);
 
-
+//test 
 function handleNumbersClick(e) { 
     if (display.textContent === 10) {return}
 
